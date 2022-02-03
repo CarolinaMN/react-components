@@ -1,0 +1,24 @@
+.data{
+    border: 1px solid;
+}
+
+#data_person{
+    border: 3px solid #ddd;
+}
+
+#data_person td{
+
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+#data_person .tr_top{
+    background-color: #4caf50;
+    padding: 10px;
+}
+
+#data_person th{
+    color: #ffffff;
+    width: 100px;
+}
+
