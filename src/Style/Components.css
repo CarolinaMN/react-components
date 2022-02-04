@@ -1,0 +1,72 @@
+.data{
+    border: 1px solid;
+}
+
+#data_person{
+    border: 3px solid #ddd;
+}
+
+#data_person td{
+
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+#data_person .tr_top{
+    background-color: #4caf50;
+    padding: 10px;
+}
+
+#data_person th{
+    color: #ffffff;
+    width: 100px;
+}
+
+.content{
+    display: flex;
+}
+
+.column{
+    width: 50%;
+}
+.columntotal{
+    width: 100%;
+}
+
+input {
+    border-radius: 3px;
+    padding: 5px;
+    box-shadow: 0 1px 3px #ddd ;
+    color: black;
+    opacity: 0.6;
+    width: 250px;
+    margin: 10px;
+    height: 25px;
+    font-size: 15px;
+}
+.login{
+    text-align: center;
+    max-width: 280px;
+    padding: 20px;
+    margin: auto;
+}
+.buttonlogin{
+    background-color: darkblue;
+    border-radius: 3px;
+    color: #ffffff;
+    width: 130px;
+    height: 32px;
+    font-size: 15px;
+    margin: 15px;
+}
+
+.comppass{
+    position: relative;
+    margin: auto;
+}
+
+.imagepass{
+    position: absolute;
+    top: 15px;
+    right: 10px;
+}

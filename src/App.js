@@ -1,32 +1,25 @@
 import React, {Component, useState} from 'react';
-import Persona from './Persona';
-import "./App.css";
-import Table from './Table';
-import Table_Dinamica from './Table_Dinamica';
+import "./Style/App.css";
+import "./Style/Components.css";
+import Table_Dinamica from './Components/Table_Dinamica';
+import Login from './Components/Login';
 
 class App extends Component{
-  render(){
-    const upDataState1 = val => {
-      
-    };
-    let datos = [
-      { 
-        nombre: 'Carolina',
-        apellido: 'Laaz',
-        edad: '23'
-      },
-      { 
-        nombre: 'Karla',
-        apellido: 'Jaume',
-        edad: '27'
-      },
-    ]
-
+  render() {
     return (
       <div>
-        <h1>Mi primer componente</h1>
-        <Table data={datos} onClick={upDataState1}></Table>
-        <Table_Dinamica></Table_Dinamica>
+        <h1>Mis Componentes</h1>
+          <div className="content">
+            <div className="columntotal">
+              <Login></Login>
+            </div>
+            {/* <div className="column">
+              <Table_Dinamica></Table_Dinamica>
+            </div>
+            <div className="column">
+              <Table_Dinamica></Table_Dinamica>
+            </div> */}
+          </div>
       </div>
     )}
 }

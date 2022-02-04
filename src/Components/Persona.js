@@ -1,5 +1,5 @@
 import React from 'react';
-import "./Components.css"
+import "../Style/Components.css"
 
 export default class Persona extends React.Component{
 

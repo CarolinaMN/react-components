@@ -1,0 +1,9 @@
+h1{
+    color: blue;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.btn:disabled{
+    opacity: 0.65;
+}
