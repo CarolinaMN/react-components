@@ -1,45 +1,43 @@
-import React, {Component} from 'react';
+import React, {Component, useState} from 'react';
 import invisible from '../Style/images/001-invisible.svg';
 import visibility from '../Style/images/002-visibility.svg';
 
-export default class InPassword extends Component{
-    constructor(){
-        super()
-        this.state = {
-            show : false
-        }
-    }
+export default function InPassword(props){
+    const [ show, setShow ] = useState(false);
+    const [ passSuccess, setPassSuccess ] = useState(false);
+    const [ valuePass, setValuePass] = useState('');
     
-    
-    imageChange  = () => {
-        this.setState({
-            show: !this.state.show,
-            passSuccess: false
-        })
+    const imageChange  = () => {
+        setShow(!show);
+        setPassSuccess(false);
     }
 
-    inputData = (e) => {
+    const inputData = (e) => {
         var count = e.target.value.length;
         if (count > 5) {
-            this.setState({
-                passSuccess: true
-            })
-            this.props.onInput(this.state.passSuccess);
+            setPassSuccess(true)
+            props.onInput(passSuccess);
         }
     }
-    render(){
-        
-        return(
-            <div className="comppass">
-             <input placeholder="Contraseña" type={this.state.show == true ? 'text':'password'} onInput={(e) => this.inputData(e)}></input>
-             <img src={this.state.show == true ? visibility : invisible}
-                width="30"
-                height="30"
-                className="imagepass"
-                onClick={this.imageChange}
-                >
-             </img>
-            </div>
-        )
+
+    const changePass = (e) => {
+        setValuePass(e.target.value);
+        props.onChange(e.target.value);
     }
+
+    return(
+        <div className="comppass">
+            <input placeholder="Contraseña" 
+            value={valuePass}
+            onChange={(e) => changePass(e)}
+            type={show == true ? 'text':'password'} onInput={(e) => inputData(e)}></input>
+            <img src={show == true ? visibility : invisible}
+            width="30"
+            height="30"
+            className="imagepass"
+            onClick={imageChange}
+            >
+            </img>
+        </div>
+    )
 }

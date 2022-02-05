@@ -4,25 +4,28 @@ import InPassword from './InPassword';
 export default function Login(){
     const [ success, setSuccess ] = useState(false);
     const [ user, setUser ] = useState('');
+    const [ password, setPassword ] = useState('');
 
-    const changeData = (d) => {
-        setSuccess(d);
+    const request = () => {
+        var data = { userEmail: user,  pass: password };
+        console.log(data);
     }
 
     return(
         <div className="login">
             <h2>INICIO DE SESIÓN</h2>
-            <form className="formlogin">
+            <form className="formlogin" >
                 <div>
-                    <input  type="text" placeholder="Usuario"></input>
+                    <input value={user} onChange={(e) => setUser(e.target.value)} type="text" placeholder="Usuario"></input>
                 </div>
                 <div>
-                    <InPassword onInput={changeData}></InPassword>
-                </div>  
-                <div>
-                    <button className="btn buttonlogin" disabled={success == false ? true : false}>Ingresar</button>
+                    <InPassword onInput={(d) => setSuccess(d)} onChange={(pass) => setPassword(pass)}></InPassword>
                 </div>
             </form>
+            <div>
+                <button className="btn buttonlogin" disabled={success == false ? true : false}
+                onClick={request}>Ingresar</button>
+            </div>
         </div>
     )
 
