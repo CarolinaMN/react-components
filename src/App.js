@@ -1,26 +1,53 @@
-import React, {Component, useState} from 'react';
+import React, {Component, useState, useEffect} from 'react';
 import "./Style/App.css";
 import "./Style/Components.css";
-import Table_Dinamica from './Components/Table_Dinamica';
+import { BrowserRouter, Routes, Route, Link} from 'react-router-dom';
+import TableDinamica from './Components/Table_Dinamica';
 import Login from './Components/Login';
-import { Count } from './Components/Count';
+import Persona from './Components/Persona'
 
 
 function App (){
-    const { cont, increment, decrement } = Count(10);
-    return (
-      <div>
-        <h1>Mis Componentes</h1>
-          <div className="content">
-            <div className="columntotal">
-              <Login></Login>
-              {/* <h1>{cont}</h1>
-              <button onClick={increment}>Incrementar</button>
-              <button onClick={decrement}>Decrementar</button>   */}
-            </div>
-          </div>
-      </div>
-      )
+
+  // const [ titleVariable, setTitle ] = useState('Proge');
+
+  // useEffect(() => {
+  //   document.title = titleVariable
+  // }, [titleVariable]);
+
+  // const change = (e) => {
+  //   setTitle(e.target.value)
+  // };
+
+  return (
+    <BrowserRouter>
+      <nav>
+        {/* Menú */}
+        <Link to="/">Login</Link>
+        <Link to="/tabla">Tabla</Link>
+        <Link to="/persona/Guayaquil">Persona</Link>
+      </nav>
+      <Routes>
+        <Route path="/" element={<Login></Login>}>
+        </Route>
+        <Route path="/tabla" element={<TableDinamica></TableDinamica>}>
+        </Route>
+        <Route path="/persona/:address" element={<Persona name="Andrea" lastName="Cevallos" age="20" ></Persona>}>
+        </Route>
+      </Routes>
+    </BrowserRouter>
+    )
 }
 
 export default App
+
+
+    {/*<div>
+
+       <input onChange={(e) => change(e)}></input>
+       <p>{title}</p>
+       <button onClick={change}>
+         Cambiar titulo
+       </button> 
+
+    </div>*/}
