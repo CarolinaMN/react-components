@@ -7,3 +7,7 @@ h1{
 .btn:disabled{
     opacity: 0.65;
 }
+
+#link{
+    padding: 20px;
+}

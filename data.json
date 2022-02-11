@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "nombre": "Carolina",
+      "apellido": "Cevallos",
+      "edad": "24"
+    },
+    {
+      "id": 2,
+      "nombre": "Carlos",
+      "apellido": "Molina",
+      "edad": "24"
+    },
+    {
+      "id": 4,
+      "nombre": "María",
+      "apellido": "Muñoz",
+      "edad": "37"
+    },
+    {
+      "id": 5,
+      "nombre": "Pedro",
+      "apellido": "Loor",
+      "edad": "28"
+    }
+  ]
+}

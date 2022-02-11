@@ -4,8 +4,10 @@ import "./Style/Components.css";
 import { BrowserRouter, Routes, Route, Link} from 'react-router-dom';
 import TableDinamica from './Components/Table_Dinamica';
 import Login from './Components/Login';
-import Persona from './Components/Persona'
-
+import Persona from './Components/Persona';
+import Peticiones from './Components/Peticiones';
+import PersonNew from './Components/PersonNew';
+import PersonUpdate from './Components/PersonUpdate';
 
 function App (){
 
@@ -23,9 +25,10 @@ function App (){
     <BrowserRouter>
       <nav>
         {/* Menú */}
-        <Link to="/">Login</Link>
-        <Link to="/tabla">Tabla</Link>
-        <Link to="/persona/Guayaquil">Persona</Link>
+        <Link id="link" to="/">Login</Link>
+        <Link id="link" to="/tabla">Tabla</Link>
+        <Link id="link" to="/persona/Guayaquil">Persona</Link>
+        <Link id="link" to="/peticiones">Peticiones</Link>
       </nav>
       <Routes>
         <Route path="/" element={<Login></Login>}>
@@ -33,6 +36,12 @@ function App (){
         <Route path="/tabla" element={<TableDinamica></TableDinamica>}>
         </Route>
         <Route path="/persona/:address" element={<Persona name="Andrea" lastName="Cevallos" age="20" ></Persona>}>
+        </Route>
+        <Route path="/peticiones" element={<Peticiones></Peticiones>}>
+        </Route>
+        <Route path="/personnew" element={<PersonNew></PersonNew>}>
+        </Route>
+        <Route path="/personupdate/:id" element={<PersonUpdate></PersonUpdate>}>
         </Route>
       </Routes>
     </BrowserRouter>
