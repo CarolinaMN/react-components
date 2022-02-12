@@ -8,6 +8,7 @@ import Persona from './Components/Persona';
 import Peticiones from './Components/Peticiones';
 import PersonNew from './Components/PersonNew';
 import PersonUpdate from './Components/PersonUpdate';
+import Register from './Components/Register';
 
 function App (){
 
@@ -29,6 +30,7 @@ function App (){
         <Link id="link" to="/tabla">Tabla</Link>
         <Link id="link" to="/persona/Guayaquil">Persona</Link>
         <Link id="link" to="/peticiones">Peticiones</Link>
+        <Link id="link" to="/register">Registro</Link>
       </nav>
       <Routes>
         <Route path="/" element={<Login></Login>}>
@@ -42,6 +44,8 @@ function App (){
         <Route path="/personnew" element={<PersonNew></PersonNew>}>
         </Route>
         <Route path="/personupdate/:id" element={<PersonUpdate></PersonUpdate>}>
+        </Route>
+        <Route path="/register" element={<Register></Register>}>
         </Route>
       </Routes>
     </BrowserRouter>

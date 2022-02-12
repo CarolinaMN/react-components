@@ -1,42 +1,47 @@
 import React, {Component} from "react";
 import axios from 'axios';
+import { Navigate } from 'react-router-dom';
 
 export default class Table extends Component{
     constructor(){ 
         super()
         this.state = {
-            data : []
+            data : [],
+            dataUpdate: false,
+            dataAdd: false
         }
     }   
 
     componentDidMount(){
+        this.loadAll();
+    }
+
+    loadAll = () => {
         axios.get('http://localhost:3001/users').then( res => {
             this.setState({
-                data: res.data
+                data: res.data,
+
             })
         });
     }
 
     render(){
         const addElement = () => {
-            
-            var dataUser = { id: 4, nombre: 'María', apellido: 'Muñoz', edad: '37'}
-            axios.post('http://localhost:3001/users', dataUser).then(res => {
+            this.setState({
+                dataAdd : true
             })
-            // let table = this.state.data.slice();
-            // table.push({
-            //     nombre:'Carlos',
-            //     apellido: 'Alcivar',
-            //     edad: '27'
-            // });
-            //this.setState({ data : table});
         };
 
         const deleteElement = (id) => {
-            axios.delete('http://localhost:3001/users/'+id).then(res => {});
-            // let table = this.state.data;
-            // let newTable = table.filter((e, i) => index != i);
-            // this.setState({ data: newTable});
+            axios.delete('http://localhost:3001/users/'+id).then(res => {
+                this.loadAll();
+            }); 
+        }
+
+        const upDateElement = () => {
+            this.setState({
+                dataUpdate: true
+            })
         }
 
         return (
@@ -59,7 +64,9 @@ export default class Table extends Component{
                             <td>{d.apellido}</td>
                             <td>{d.edad}</td>
                             <td>
-                                <button onClick={() => deleteElement(d.id)}>Eliminar</button>   
+                                <button onClick={() => deleteElement(d.id)}>Eliminar</button>
+                                <button onClick={() => upDateElement()}>Editar</button> 
+                                {this.state.dataUpdate ? <Navigate to={'/personupdate/'+d.id}></Navigate> : <></>}  
                             </td>
                         </tr>
                     )}
@@ -67,6 +74,7 @@ export default class Table extends Component{
                 </tbody>
                 </table>
                 <button onClick={addElement}>Agregar</button>
+                {this.state.dataAdd ? <Navigate to='/personnew'></Navigate> : <></>}  
             </div>
         )
     }

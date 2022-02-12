@@ -1,15 +1,21 @@
 import React, {Component, useState} from 'react';
 import InPassword from './InPassword';
+import axios from 'axios';
 
 export default function Login(){
     const [ success, setSuccess ] = useState(false);
     const [ user, setUser ] = useState('');
     const [ password, setPassword ] = useState('');
+    const [ rememberMe, setRememberMe ] = useState(false);
 
     const request = () => {
-        var data = { userEmail: user,  pass: password };
-        console.log(data);
+        var data = { username: user,  password: password, rememberMe: rememberMe };
+        axios.post('http://45.79.170.253:8080/api/authenticate', data).then(res => {
+            var respData = res.data;
+            localStorage.setItem('token-react', respData.id_token);
+        });
     }
+
 
     return(
         <div className="login">

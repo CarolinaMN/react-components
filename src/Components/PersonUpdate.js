@@ -11,10 +11,11 @@ export default function PersonUpdate() {
     });
 
     const navegate = useNavigate();
+    const params = useParams();
 
     useEffect(() => {
-        loadUser(1);
-    })
+        loadUser(params.id);
+    }, []);
 
     const loadData = (e) => {
         var name = e.target.name;
@@ -26,7 +27,7 @@ export default function PersonUpdate() {
     }
 
     const save = () => {
-        axios.put('http://localhost:3001/users/1', person).then(() => {
+        axios.put('http://localhost:3001/users/' + params.id, person).then(() => {
             navegate('/tabla');
         });
     }
