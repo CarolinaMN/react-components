@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios'; 
+import axios from 'axios';
 
-export default function MedicalArea(){
-    const [ areas, setAreas ] = useState([]);
+export default function Catalogs() {
+    const [catalogs, setCatalogs ] = useState([]);
 
     useEffect(() => {
         loadAll();
     }, []);
 
     const loadAll = () => {
-        axios.get('http://45.79.170.253:8080/services/serlicitas/api/medical-areas').then(res => {
-            setAreas(res.data);
+        axios.get('http://45.79.170.253:8080/services/serlicitas/api/medical-catalogs').then(res => {
+            setCatalogs(res.data);
         }).catch(() => {
             console.log("Error")
         });
@@ -21,15 +21,19 @@ export default function MedicalArea(){
             <table id="data_person">
                 <thead>
                     <tr className="tr_top">
+                        <th>Código</th>
                         <th>Nombre</th>
                         <th>Descripción</th>
+                        <th>Estado</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {areas.map((item) =>
+                    {catalogs.map((item) =>
                         <tr key={item.id}>
+                            <td>{item.catalogCode}</td>
                             <td>{item.name}</td>
                             <td>{item.description}</td>
+                            <td>{item.status}</td>
                         </tr>
                     )}
                     
@@ -37,4 +41,6 @@ export default function MedicalArea(){
             </table>
         </div>
     )
-} 
+
+
+}

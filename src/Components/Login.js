@@ -1,6 +1,7 @@
 import React, {Component, useState} from 'react';
 import InPassword from './InPassword';
 import axios from 'axios';
+import apiInstance from '../axios.interceptor';
 
 export default function Login(){
     const [ success, setSuccess ] = useState(false);

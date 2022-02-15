@@ -9,6 +9,11 @@ import Peticiones from './Components/Peticiones';
 import PersonNew from './Components/PersonNew';
 import PersonUpdate from './Components/PersonUpdate';
 import Register from './Components/Register';
+import MedicalAreas from './Components/MedicalAreas';
+import MedicalServices from './Components/MedicalServices';
+import Catalogs from './Components/Catalogs';
+import Appointments from './Components/Appointments';
+import DetailMedical from './Components/DetailMedical';
 
 function App (){
 
@@ -47,6 +52,14 @@ function App (){
         </Route>
         <Route path="/register" element={<Register></Register>}>
         </Route>
+        <Route path="/medical-areas" element={<MedicalAreas></MedicalAreas>}>
+        </Route>
+        <Route path="/medical-services" element={<MedicalServices></MedicalServices>}>
+        </Route>
+        <Route path="/catalogs" element={<Catalogs></Catalogs>}>
+        </Route>
+        <Route path="/appointments" element={<Appointments></Appointments>}></Route>
+        <Route path="/detail-medical/:id" element={<DetailMedical></DetailMedical>}></Route>
       </Routes>
     </BrowserRouter>
     )
