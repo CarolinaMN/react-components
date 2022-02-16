@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import apiInstance from '../axios.interceptor';
+
 
 export default function Catalogs() {
     const [catalogs, setCatalogs ] = useState([]);
@@ -9,7 +11,7 @@ export default function Catalogs() {
     }, []);
 
     const loadAll = () => {
-        axios.get('http://45.79.170.253:8080/services/serlicitas/api/medical-catalogs').then(res => {
+        apiInstance.get('services/serlicitas/api/medical-catalogs').then(res => {
             setCatalogs(res.data);
         }).catch(() => {
             console.log("Error")

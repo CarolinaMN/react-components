@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://45.79.170.253:8080/';
+const BASE_URL = 'http://localhost:5000/';
 
 const apiInstance = axios.create({ baseURL: BASE_URL});
 
-const token = '';
 
 apiInstance.interceptors.request.use((request) => {
+    var token = localStorage.getItem('token-react');
     request.headers.Authorization = 'Bearer ' + token;
     return request;
 }, (error) => error);

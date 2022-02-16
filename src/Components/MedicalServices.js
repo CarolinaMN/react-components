@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import apiInstance from '../axios.interceptor';
+
 
 export default function MedicalServices() {
     const [ services, setServices ] = useState([]);
@@ -12,25 +14,29 @@ export default function MedicalServices() {
     }, []);
 
     const loadAll = () => {
-        axios.get('http://45.79.170.253:8080/services/serlicitas/api/medical-services').then(res => {
+        apiInstance.get('services/serlicitas/api/medical-services').then(res => {
             setServices(res.data);
         }).catch(() => {
         });
     };
 
     const loadAreas = () => {
-        axios.get('http://45.79.170.253:8080/services/serlicitas/api/medical-areas').then(res => {
+        apiInstance.get('services/serlicitas/api/medical-areas').then(res => {
             setAreas(res.data);
         })
     }
 
     const changeArea = (e) => {
         setAreaSelected(e.target.value);
-        loadDataArea();
+        if (e.target.value !== '') {
+            loadDataArea();
+        } else {
+            loadAll();
+        }
     }
 
     const loadDataArea = () => {
-        axios.get('http://45.79.170.253:8080/services/serlicitas/api/medical-services/area/' + areaSelected).then(res => {
+        apiInstance.get('services/serlicitas/api/medical-services/area/' + areaSelected).then(res => {
             setServices(res.data);
         });
     }
@@ -38,11 +44,11 @@ export default function MedicalServices() {
     return(
         <div>
             <div>
-                <select value={areaSelected} onChange={changeArea()}>
-                    {areas.map((option) => {
+                <select value={areaSelected} onChange={e => changeArea(e)}>
+                    <option value="">Todos</option>
+                    {areas.map((option) => 
                         <option value={option.id}>{option.name}</option>
-                        })
-                    }                   
+                    )}
                 </select>
             </div>
 

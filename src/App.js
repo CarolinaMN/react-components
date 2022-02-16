@@ -14,6 +14,7 @@ import MedicalServices from './Components/MedicalServices';
 import Catalogs from './Components/Catalogs';
 import Appointments from './Components/Appointments';
 import DetailMedical from './Components/DetailMedical';
+import Patient from './Components/Patient';
 
 function App (){
 
@@ -60,6 +61,8 @@ function App (){
         </Route>
         <Route path="/appointments" element={<Appointments></Appointments>}></Route>
         <Route path="/detail-medical/:id" element={<DetailMedical></DetailMedical>}></Route>
+        <Route path="/patient/:id" element={<Patient></Patient>}></Route>
+
       </Routes>
     </BrowserRouter>
     )
