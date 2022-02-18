@@ -13,11 +13,14 @@ import Catalogs from './Components/Catalogs';
 import Appointments from './Components/Appointments';
 import DetailMedical from './Components/DetailMedical';
 import Patient from './Components/Patient';
+import Home from './Components/Home';
 
 export default function LinkRoutes () {
     return(
     <Routes>
-        <Route path="/" element={<Login></Login>}>
+        <Route path="/" element={<Home></Home>}>
+        </Route>
+        <Route path="/login" element={<Login></Login>}>
         </Route>
         <Route path="/tabla" element={<TableDinamica></TableDinamica>}>
         </Route>

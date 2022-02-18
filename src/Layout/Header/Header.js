@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Navbar, Container, Nav, Button  } from 'react-bootstrap';
+import React, { useState, useEffect, useContext } from 'react';
+import { Navbar, Container, Nav, Button, Offcanvas, NavDropdown, FormControl, Form} from 'react-bootstrap';
+import { Context } from '../../Components/Context';
+import { useNavigate } from 'react-router-dom';
+import logo  from '../../Style/images/doc.png';
 
 export default function Header () {
-    const [ authenticated, setAuthenticated ] = useState(false);
+    const context = useContext(Context);
+    const navegate = useNavigate(Context);
 
     useEffect(() => {
         loadAuthenticated();
@@ -12,31 +16,71 @@ export default function Header () {
         var sesion = '';
         sesion = localStorage.getItem('token-react');
         if (sesion === null) {
-            setAuthenticated(false);
+            context.setAuthenticated(false);
         } else {
-            setAuthenticated(true);
+            context.setAuthenticated(true);
         }
     };
 
     const closeLogin = () => {
         localStorage.removeItem('token-react');
-        setAuthenticated(false);
+        context.setAuthenticated(false);
+        navegate('/');
     }
 
     return(
-        <Navbar bg="dark" variant="dark">
-        <Container>
-            { authenticated === false ? 
-                <Navbar.Brand href="/">Login</Navbar.Brand> : <Navbar.Brand onClick={closeLogin}>Home</Navbar.Brand>
-            }
-            <Nav className="me-auto">
+    <>    
+        <Navbar bg="light" expand={!context.authenticated}>
+    <Container fluid>
+        <Navbar.Brand href="/">
+            <img
+                src={logo}
+                width="40"
+                height="40"
+            >
+            </img>
+            Sistema Médico
+        </Navbar.Brand>
+        
+        { !context.authenticated ?
+            <Nav>
                 <Nav.Link href="/register">Registro</Nav.Link>
-                { authenticated === true ? <Nav.Link href="/medical-areas">Areas Medicas</Nav.Link> : <></> }
-                { authenticated === true ? <Nav.Link href="/medical-services">Servicios disponibles</Nav.Link> : <></> }
-                { authenticated === true ? <Nav.Link href="/catalogs">Catalogos</Nav.Link> : <></> }
+                <Nav.Link href="/login">Login</Nav.Link>
             </Nav>
-        </Container>
-      </Navbar>
+            : <Navbar.Toggle aria-controls="offcanvasNavbar" />
+        }
+        
+        { context.authenticated ? 
+        <Navbar.Offcanvas
+        id="offcanvasNavbar"
+        aria-labelledby="offcanvasNavbarLabel"
+        placement="end"
+        >
+        <Offcanvas.Header closeButton>
+            <Offcanvas.Title id="offcanvasNavbarLabel">
+                <img
+                    src={logo}
+                    width="40"
+                    height="40"
+                >
+                </img>
+                Sistema Médico
+            </Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
+            <Nav className="justify-content-end flex-grow-1 pe-3">
+                <Nav.Link href="/register">Registro</Nav.Link>
+                <Nav.Link href="/medical-areas">Areas Medicas</Nav.Link>
+                <Nav.Link href="/medical-services">Servicios disponibles</Nav.Link>
+                <Nav.Link href="/catalogs">Catalogos</Nav.Link>
+                <Nav.Link href="" onClick={closeLogin}>Cerrar Sesión</Nav.Link>
+            </Nav>
+        </Offcanvas.Body>
+        </Navbar.Offcanvas>
+        : <></> }
+    </Container>
+    </Navbar>
+      </>
     )
 }
 
